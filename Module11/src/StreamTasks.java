@@ -11,13 +11,9 @@ class StreamTasks {
 	// Task #1
 	private static String namesByOddIndexes(List<String> names) {
 		
-		for (int i = 0; i < names.size(); i++) {
-			names.set(i, (i+1) + ". " + names.get(i));
-		}
-		
 		return IntStream.range(0, names.size())
-				.filter(i -> i % 2 == 0)
-				.mapToObj(names::get)
+				.filter(i -> i % 2 != 0)
+				.mapToObj(index -> index + ". " + names.get(index))
 				.collect(Collectors.joining(", "));
 	}
 
